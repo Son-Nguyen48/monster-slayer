@@ -13,12 +13,17 @@ const app = Vue.createApp({
   },
   computed: {
     monsterBarStyle() {
-      if (this.monsterHealth < 0) return { width: "0%" };
-      return { width: this.monsterHealth + "%" };
+      if (this.monsterHealth < 0)
+        return { width: "0%", transition: "all 0.3s ease-in" };
+      return {
+        width: this.monsterHealth + "%",
+        transition: "all 0.3s ease-in"
+      };
     },
     playerBarStyle() {
-      if (this.playerHealth < 0) return { width: "0%" };
-      return { width: this.playerHealth + "%" };
+      if (this.playerHealth < 0)
+        return { width: "0%", transition: "all 0.3s ease-in" };
+      return { width: this.playerHealth + "%", transition: "all 0.3s ease-in" };
     },
     mayUseSpecialAttack() {
       if (!this.currentRound) {
@@ -83,6 +88,10 @@ const app = Vue.createApp({
       this.playerHealth = 100;
       this.currentRound = 0;
       this.winner = null;
+    },
+    surrender() {
+      this.playerHealth = 0;
+      this.winner = "monster";
     }
   }
 });

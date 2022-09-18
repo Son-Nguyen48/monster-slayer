@@ -34,15 +34,15 @@
         <h3 v-if="winner ==='draw'">A draw</h3>
         <h3 v-if="winner ==='player'">You Won</h3>
         <h3 v-if="winner ==='monster'">Monster Won</h3>
-        <button v-if="winner" @click="resetTheGame">RESET</button>
+        <button @click="resetTheGame">RESET</button>
       </section>
-      <section id="controls">
+      <section id="controls" v-if="!winner">
         <button @click="attackMonster">ATTACK</button>
         <button :disabled="mayUseSpecialAttack" @click="specialAttack">
           SPECIAL ATTACK
         </button>
         <button @click="healHealthBar">HEAL</button>
-        <button>SURRENDER</button>
+        <button @click="surrender">SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
